@@ -17,8 +17,8 @@ User Stories
 * As a visitor, I can submit a book title that I like and a location to get recommendations for my next book to read, dipslayed as thumbnails with titles, and local bookstores or libraries, displayed on a map.
 *As a visitor, I can hover on book results to see the discription and click on them to view their Wikipedia page. I can click on the store/libarary pins  to see details of the location, including name, address and website, and visit the store's website.
 (LANDING PAGE--wireframe will have title, logo, a few details about how to search and what the app is about)
-![UI Flow handwritten draft](https://github.com/Marjona6/not-just-luck-thinkful-full-stack-capstone/blob/master/public/img/wf00.jpg)
-
+![UI Flow handwritten draft](https://github.com/jgmil/my-next-book-api-capstone/blob/master/github-images/new-favorite-user-flow.jpg)
+![UI wireframes handwritten draft](https://github.com/jgmil/my-next-book-api-capstone/blob/master/github-images/new-favorite-wireframes.jpg)
 
 
 ## Working Prototype
