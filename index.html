@@ -8,17 +8,23 @@
 </head>
 
 <body>
-    <header role="banner">Your NEW FAVOTIRE Book</header>
+    <header role="banner">Your New Favorite Book</header>
     <section class="intro">
         <p>Discover your new favorite book by submitting a title you love, and search for nearby bookstores or libraries.</p>
     </section>
     <section class="bookSearch">
         <form action="#" role="form" class="searchForm">
+
+            <label>A book that you love:<input type="text"  class="searchQuery"></label>
+            <label>Your location:<input type="text"  class="searchQuery"></label>
             <fieldset>
-                <label>Submit a book that you love:<input type="text"  class="searchQuery"></label>
-                <label>Location:<input type="text"  class="searchQuery"></label>
-                <button type="submit">Submit</button>
+                <input type="radio" id="library">
+                <label for="library">Library</label>
+                <input type="radio" id="bookstore">
             </fieldset>
+            <label for="bookstore">Bookstore</label>
+            <button type="submit">Submit</button>
+
         </form>
     </section>
     <section class="bookResults"></section>

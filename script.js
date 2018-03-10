@@ -1,4 +1,13 @@
-const TASTEDIVE_SEARCH_URL = 'https://tastedive.com/api/similar?';
+/********************************************
+Step 1 define functions and objects
+************************************/
+
+/********************************************
+Step 2 use functions and objects
+************************************/
+
+
+/*const TASTEDIVE_SEARCH_URL = 'https://tastedive.com/api/similar?';
 
 function getData(searchTerm, callback) {
   const query = {
@@ -28,4 +37,4 @@ function displayData(data) {
   }
 
 
-$(onSubmit);
+$(onSubmit);*/
