@@ -62,14 +62,15 @@ General styles (General Module, wrapping around the modules below)
 */
 
 body {
+    width: auto;
     font-family: 'Rubik', sans-serif;
     text-align: center;
-    background-color: #5a5c51;
+    background-color: #bcd5d1;
     color: white;
     margin: auto;
     line-height: 1.6;
     font-size: 20px;
-    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(http://maxpixel.freegreatpicture.com/static/photo/2x/Cover-Book-Pages-Bookstore-Open-Book-Textbook-1614230.jpg);
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://github.com/jgmil/my-next-book-api-capstone/blob/master/website-images/Cover-Book-Pages-Bookstore-Open-Book-Textbook-1614230.jpg?raw=true);
 }
 
 h1,
@@ -102,8 +103,8 @@ button {
     text-align: center;
     border: 1px solid #1d2120;
     border-radius: 3px;
-    padding: 5px;
-    margin: auto;
+    padding: 10px;
+    margin: 5px auto 0;
     background-color: #1d2120;
     color: white;
 }
@@ -140,11 +141,10 @@ li {
     max-width: 175px;
     display: inline-block;
     vertical-align: top;
-    margin-right: 10px;
+    margin: 0 5px 0 5px;
 }
 
 .bookSearch {
-    background-color: #5a5c51;
     border-radius: 3px;
     max-width: 500px;
     margin: 0px auto 20px;
@@ -161,7 +161,7 @@ li {
 .mapResults {
     width: 600px;
     display: inline-block;
-    text-align: left;
+    text-align: center;
     vertical-align: top;
     margin-top: 20px;
 }
@@ -189,3 +189,29 @@ Responsive styles
 (the very last module in the CSS, contains all the media queries and it is dealing with the compatibility with mobiles and tablets)
 place all the mobile tables styles below this line
 */
+
+@media only screen and (max-width: 600px) {
+
+
+    .itemContainer {
+        display: block;
+        text-align: center;
+        width: 100%;
+        margin: auto;
+        margin-bottom: 20px;
+    }
+
+    .bookResults,
+    .mapResults {
+        width: auto;
+        display: block;
+        text-align: center;
+        vertical-align: top;
+        margin-top: 20px;
+    }
+
+    .bookImage {
+        display: block;
+    }
+
+}
