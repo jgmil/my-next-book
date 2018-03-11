@@ -68,7 +68,7 @@ body {
     color: white;
     margin: auto;
     line-height: 1.6;
-    font-size: 18px;
+    font-size: 20px;
     background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(http://maxpixel.freegreatpicture.com/static/photo/2x/Cover-Book-Pages-Bookstore-Open-Book-Textbook-1614230.jpg);
 }
 
@@ -103,11 +103,11 @@ Content styles (Main Module)
 */
 
 a:link {
-    color: #bcd5d1;
+    color: white;
 }
 
 a:visited {
-    color: #ba9077;
+    color: #bcd5d1;
 }
 
 p {
@@ -119,8 +119,9 @@ h2 {
 }
 
 .intro {
-    max-width: 600px;
+    max-width: 700px;
     margin: auto;
+    padding: 20px;
 }
 
 .bookSearch {
@@ -159,6 +160,8 @@ button {
     border-radius: 3px;
     padding: 5px;
     margin: auto;
+    background-color: #1d2120;
+    color: white;
 }
 
 
