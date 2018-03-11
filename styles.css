@@ -1,5 +1,5 @@
 /*
-The CSS code gets to executed from top to bottom and left ro right
+The CSS code gets to executed from top to bottom and left to right
 Basic rules to write CSS
 - write GENERAL rules first (for all the paragraph tags in the website for example) and only after that write CSS for SPECIFIC tags (for example the paragraph tags inside the footer)
 - write the css styles to define for the parent (outside) container and THEN the children (inside containers) of that parent and THEN the children (inside containers) of the child above
@@ -61,23 +61,115 @@ General styles (General Module, wrapping around the modules below)
 (the styles used everywhere in the page (like the Body) or styles which are used in more than 2 of the modules below (h2, h3, h4, h5, h6, p, a, ul, li))
 */
 
-body {}
+body {
+    font-family: 'Rubik', sans-serif;
+    text-align: center;
+    background-color: #5a5c51;
+    color: white;
+    margin: auto;
+    line-height: 1.6;
+    font-size: 18px;
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(http://maxpixel.freegreatpicture.com/static/photo/2x/Cover-Book-Pages-Bookstore-Open-Book-Textbook-1614230.jpg);
+}
 
+h1,
+h2 {
+    font-family: 'Trirong', serif;
+    font-weight: bold;
+}
+
+li {
+    display: inline-block;
+    margin-right: 15px;
+}
 
 /* -------------------------------------
 Header styles (Main Module)
 (all the styles inside the < header > or < nav > tags)
 */
 
+header {
+    background-color: #1d2120;
+    padding: 15px;
+}
+
+h1 {
+    font: 60px bold;
+}
+
 /* -------------------------------------
 Content styles (Main Module)
 (all the styles inside the < sections > or < aside > tags)
 */
 
+a:link {
+    color: #bcd5d1;
+}
+
+a:visited {
+    color: #ba9077;
+}
+
+p {
+    padding: 10px 0;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+.intro {
+    max-width: 600px;
+    margin: auto;
+}
+
+.bookSearch {
+    background-color: #5a5c51;
+    border-radius: 3px;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 15px;
+    line-height: 2;
+}
+
+.bookImage {
+    display: block;
+    width: 175px;
+}
+
+.bookResults,
+.mapResults {
+    width: 600px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.bookResults {
+    position: relative;
+    top: 0;
+}
+
+.map {
+    width: 600px;
+}
+
+button {
+    text-align: center;
+    border: 1px solid #1d2120;
+    border-radius: 3px;
+    padding: 5px;
+    margin: auto;
+}
+
+
 /* -------------------------------------
 Footer styles (Main Module)
 (all the styles inside the < footer > tag)
 */
+
+footer {
+    padding: 15px 0;
+}
 
 /* -------------------------------------
 place all the desktop styles above this line
