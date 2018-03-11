@@ -86,12 +86,21 @@ Header styles (Main Module)
 */
 
 header {
-    background-color: #1d2120;
+    background-color: #5a5c51;
     padding: 15px;
 }
 
 h1 {
-    font: 60px bold;
+    font-size: 60px;
+}
+
+button,
+input {
+    padding: 5px;
+    margin-bottom: 5px;
+    border: 1px solid #5a5c51;
+    border-radius: 3px;
+
 }
 
 /* -------------------------------------
@@ -101,10 +110,7 @@ Content styles (Main Module)
 
 button {
     text-align: center;
-    border: 1px solid #1d2120;
-    border-radius: 3px;
-    padding: 10px;
-    margin: 5px auto 0;
+    margin: 15px auto 0;
     background-color: #1d2120;
     color: white;
 }
@@ -122,7 +128,8 @@ p {
 }
 
 h2 {
-    font-size: 24px;
+    font-size: 28px;
+    font-weight: bold;
 }
 
 li {
@@ -137,13 +144,6 @@ li {
     padding: 20px;
 }
 
-.itemContainer {
-    max-width: 175px;
-    display: inline-block;
-    vertical-align: top;
-    margin: 0 5px 0 5px;
-}
-
 .bookSearch {
     border-radius: 3px;
     max-width: 500px;
@@ -152,9 +152,11 @@ li {
     line-height: 2;
 }
 
-.bookImage {
-    display: block;
-    width: 175px;
+.locationType,
+#library,
+#bookstore {
+    display: inline-block;
+    margin-left: 10px;
 }
 
 .bookResults,
@@ -164,6 +166,18 @@ li {
     text-align: center;
     vertical-align: top;
     margin-top: 20px;
+}
+
+.itemContainer {
+    max-width: 175px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 5px 15px 5px;
+}
+
+.bookImage {
+    display: block;
+    width: 175px;
 }
 
 .map {
@@ -192,7 +206,6 @@ place all the mobile tables styles below this line
 
 @media only screen and (max-width: 600px) {
 
-
     .itemContainer {
         display: block;
         text-align: center;
@@ -212,6 +225,7 @@ place all the mobile tables styles below this line
 
     .bookImage {
         display: block;
+        width: 300px;
     }
 
 }
