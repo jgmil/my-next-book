@@ -65,12 +65,13 @@ body {
     width: auto;
     font-family: 'Rubik', sans-serif;
     text-align: center;
-    background-color: #bcd5d1;
+    background-color: #5a5c51;
+    background-image: url(https://github.com/jgmil/my-next-book-api-capstone/blob/master/website-images/Cover-Book-Pages-Bookstore-Open-Book-Textbook-1614230.jpg?raw=true);
     color: white;
     margin: auto;
     line-height: 1.6;
     font-size: 20px;
-    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://github.com/jgmil/my-next-book-api-capstone/blob/master/website-images/Cover-Book-Pages-Bookstore-Open-Book-Textbook-1614230.jpg?raw=true);
+    background: linear-gradient( rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url(https://github.com/jgmil/my-next-book-api-capstone/blob/master/website-images/Cover-Book-Pages-Bookstore-Open-Book-Textbook-1614230.jpg?raw=true);
 }
 
 h1,
@@ -162,7 +163,7 @@ li {
 
 .bookResults,
 .mapResults {
-    display: inline-block;
+    display: none;
     vertical-align: top;
     margin-top: 20px;
 }
