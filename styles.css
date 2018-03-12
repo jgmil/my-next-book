@@ -110,9 +110,11 @@ Content styles (Main Module)
 
 button {
     text-align: center;
+    font-weight: bold;
     margin: 15px auto 0;
     background-color: #1d2120;
     color: white;
+    padding: 15px;
 }
 
 a:link {
@@ -133,9 +135,9 @@ h2 {
 }
 
 li {
-    display: inline-block;
     margin-right: 15px;
     margin-bottom: 10px;
+    list-style-type: none;
 }
 
 .intro {
@@ -152,7 +154,6 @@ li {
     line-height: 2;
 }
 
-.locationType,
 #library,
 #bookstore {
     display: inline-block;
@@ -161,23 +162,19 @@ li {
 
 .bookResults,
 .mapResults {
-    width: 600px;
     display: inline-block;
-    text-align: center;
     vertical-align: top;
     margin-top: 20px;
 }
 
-.itemContainer {
-    max-width: 175px;
-    display: inline-block;
-    vertical-align: top;
-    margin: 0 5px 15px 5px;
+.bookResults {
+    width: 33%;
+    text-align: right;
 }
 
-.bookImage {
-    display: block;
-    width: 175px;
+.mapResults {
+    width: 66%;
+    text-align: left;
 }
 
 .map {
@@ -197,6 +194,10 @@ footer {
     padding: 15px 0;
 }
 
+footer li {
+    display: inline-block;
+}
+
 /* -------------------------------------
 place all the desktop styles above this line
 Responsive styles
@@ -206,12 +207,8 @@ place all the mobile tables styles below this line
 
 @media only screen and (max-width: 600px) {
 
-    .itemContainer {
-        display: block;
-        text-align: center;
-        width: 100%;
+    body {
         margin: auto;
-        margin-bottom: 20px;
     }
 
     .bookResults,
@@ -223,9 +220,5 @@ place all the mobile tables styles below this line
         margin-top: 20px;
     }
 
-    .bookImage {
-        display: block;
-        width: 300px;
-    }
 
 }
