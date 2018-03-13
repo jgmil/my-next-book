@@ -22,11 +22,11 @@
                     <legend>
                         <h2>Find your new favorite book</h2>
                     </legend>
-                    <label>A book you love: <input type="text"  class="titleQuery" placeholder="Title"></label><br>
-                    <label>Your location: <input type="text"  class="locationQuery" placeholder="New York, NY"></label><br>
+                    <label>A book you love: <input type="text"  class="titleQuery" placeholder="Title" value="The Road"></label><br>
+                    <label>Your location: <input type="text"  class="locationQuery" value="New York, NY"></label><br>
                     <fieldset role="radiogroup">
                         <legend class="locationType">Choose a location type:</legend>
-                        <input type="radio" name="locationType" id="library" value="library" aria-labelledby="library">
+                        <input type="radio" name="locationType" id="library" checked value="library" aria-labelledby="library">
                         <label for="library"> Library</label>
                         <input type="radio" name="locationType" id="bookstore" value="bookstore" labelledby="bookstore">
                         <label for="bookstore"> Bookstore</label>
@@ -35,12 +35,16 @@
                 <button type="submit">Find a Book</button>
             </form>
         </section>
-        <section class="bookResults">
 
-        </section>
         <section class="mapResults">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/World_Map_1689.JPG/1920px-World_Map_1689.JPG" alt="place holder map" class="map">
         </section>
+        <section class="bookResults">
+            <ul>
+
+            </ul>
+        </section>
+
     </main>
     <footer>
         <ul>

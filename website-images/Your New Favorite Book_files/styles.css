@@ -175,7 +175,7 @@ li {
 }
 
 .teaser {
-    height: 150px;
+    height: 75px;
     padding: 5px;
     overflow-x: auto;
     font-family: 'Rubik', sans-serif;
@@ -187,7 +187,7 @@ li {
 .bookTitle {
     display: inline-block;
     width: 45%;
-    margin: 5px 15px;
+    margin: 5px;
 }
 
 .moreInfoLink {
