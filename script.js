@@ -8,33 +8,55 @@ function onSubmit() {
     $(".searchForm").submit(event => {
         event.preventDefault();
         console.log("onSubmit ran");
-        //get search query
-        //
+        const titleTarget = $(event.currentTarget).find('.titleQuery');
+        const titleQuery = titleTarget.val();
+        titleTarget.val("");
+        const locationTarget = $(event.currentTarget).find('.locationQuery');
+        const locationQuery = locationTarget.val();
+        locationTarget.val("");
+        const locationType = $("input[type=radio][name=locationType]:checked").val();
+        $('input[type=radio][name="locationType"]').attr("checked", false);
+        console.log(locationQuery);
+        console.log(locationType);
+        console.log(titleQuery);
+        //get data next
         displayBookData();
         displayMapData();
     });
 };
 
-function getData(queryBook, queryLocation) {
+function getData(titleQuery, locationQuery) {
 
 };
 
 function displayBookData(bookData) {
     console.log(bookData);
-    $(".bookResults").append(`
+    $(".bookResults").html(`
 <ul>
-<li><a href="https://wikipedia.org" id="book">Book Title</a></li>
-<li><a href="https://wikipedia.org" id="book1">Book Title</a></li>
-<li><a href="https://wikipedia.org" id="book2">Book Title</a></li>
-<li><a href="https://wikipedia.org" id="book3">Book Title</a></li>
-<li><a href="https://wikipedia.org" id="book4">Book Title</a></li>
-<li><a href="https://wikipedia.org" id="book5">Book Title</a></li>
-<li><a href="https://wikipedia.org" id="book6">Book Title</a></li>
-<li><a href="https://wikipedia.org" id="book7">Book Title</a></li>
-<li><a href="https://wikipedia.org" id="book8">Book Title</a></li>
-<li><a href="https://wikipedia.org" id="book9">Book Title</a></li>
+<li class="bookTitle" id="book">Book Title <a class="moreInfoLink" href="https://wikipedia.org">More Info</a></li>
+<li class="bookTitle" id="book1">Book Title <a class="moreInfoLink" href="https://wikipedia.org" >More Info</a></li>
+<li class="bookTitle" id="book2">Book Title <a class="moreInfoLink" href="https://wikipedia.org" >More Info</a></li>
+<li class="bookTitle" id="book3">Book Title <a class="moreInfoLink" href="https://wikipedia.org" >More Info</a></li>
+<li class="bookTitle" id="book4">Book Title that is really long <a class="moreInfoLink" href="https://wikipedia.org" >More Info</a></li>
+<li class="bookTitle" id="book5">Book Title <a class="moreInfoLink" href="https://wikipedia.org" >More Info</a></li>
+<li class="bookTitle" id="book6">Book Title <a class="moreInfoLink" href="https://wikipedia.org" >More Info</a></li>
+<li class="bookTitle" id="book7">Book Title <a class="moreInfoLink" href="https://wikipedia.org" >More Info</a></li>
+<li class="bookTitle" id="book8">Book Title <a class="moreInfoLink" href="https://wikipedia.org" >More Info</a></li>
+<li class="bookTitle" id="book9">Book Title <a class="moreInfoLink" href="https://wikipedia.org" >More Info</a></li>
 </ul>`);
     $(".bookResults").css("display", "inline-block");
+    $(hoverDescription);
+};
+
+function hoverDescription() {
+    $("li").hover(
+        function () {
+            $(this).append($("<div id='bookDescription'> ***</div>"));
+        },
+        function () {
+            $(this).find("div:last").remove();
+        }
+    );
 };
 
 function displayMapData(mapData) {

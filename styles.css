@@ -173,6 +173,16 @@ li {
     text-align: right;
 }
 
+.bookTitle {
+    font-family: 'Trirong', serif;
+    font-weight: bold;
+}
+
+.moreInfoLink {
+    font-size: 16px;
+    margin-left: 5px;
+}
+
 .mapResults {
     width: 66%;
     text-align: left;
@@ -206,7 +216,7 @@ Responsive styles
 place all the mobile tables styles below this line
 */
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 900px) {
 
     body {
         margin: auto;
