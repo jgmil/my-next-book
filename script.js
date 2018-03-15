@@ -46,6 +46,7 @@ function getMapData(locationQuery, locationType) {
         .done(function (results) {
                 //                console.log(results);
                 let geocode = results.results["0"].geometry.location;
+                console.log(geocode);
                 initMap(geocode, locationType);
             }
 
@@ -61,19 +62,20 @@ function initMap(geocode, locationType) {
 
     map = new google.maps.Map(document.getElementById('map'), {
         center: geocode,
-        zoom: 15
+        zoom: 14
     });
 
     infowindow = new google.maps.InfoWindow();
     var service = new google.maps.places.PlacesService(map);
     service.nearbySearch({
         location: geocode,
-        radius: 500,
-        type: ['locationType']
+        radius: 1500,
+        keyword: locationType
     }, callback);
 }
 
 function callback(results, status) {
+    console.log(results);
     if (status === google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < results.length; i++) {
             createMarker(results[i]);
@@ -89,7 +91,10 @@ function createMarker(place) {
     });
 
     google.maps.event.addListener(marker, 'click', function () {
-        infowindow.setContent(place.name);
+        console.log(place.name);
+        console.log(place.vicinity);
+        let contentString = `<div id = "infoWindow" role="dialog"> <p>${place.name}</p> <p> ${place.vicinity}</p></div>`;
+        infowindow.setContent(contentString);
         infowindow.open(map, this);
     });
 }
@@ -99,11 +104,11 @@ function displayBookData(bookData) {
     for (let i = 0; i < bookData.length; i++) {
         console.log(bookData[i].Name);
         $(".bookResults ul").append(`
-<li class="bookTitle">
-<a class="moreInfoLink" href="${bookData[i].wUrl}">${bookData[i].Name}</a>
-<div class="teaser">${bookData[i].wTeaser}</div>
-</li>
-`);
+            <li class="bookTitle">
+            <a class="moreInfoLink" href="${bookData[i].wUrl}">${bookData[i].Name}</a>
+            <div class="teaser">${bookData[i].wTeaser}</div>
+            </li>
+        `);
     }
     $(".bookResults").css("display", "block");
 };
@@ -117,7 +122,7 @@ $(document).ready(function () {
     $(".mapResults").css("display", "none");
     $(".searchForm").submit(event => {
         event.preventDefault();
-        console.log("onSubmit ran");
+        $(".bookResults ul").html("");
         const titleQuery = $(event.currentTarget).find('.titleQuery').val();
         if (titleQuery == "") {
             alert("Please enter a book title.");
