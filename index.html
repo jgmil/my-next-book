@@ -28,7 +28,7 @@
                         <legend class="locationType">Choose a location type:</legend>
                         <input type="radio" name="locationType" id="library" checked value="library" aria-labelledby="library">
                         <label for="library"> Library</label>
-                        <input type="radio" name="locationType" id="bookstore" value="bookstore" labelledby="bookstore">
+                        <input type="radio" name="locationType" id="bookstore" value="book_store" labelledby="bookstore">
                         <label for="bookstore"> Bookstore</label>
                     </fieldset>
                 </fieldset>
@@ -37,7 +37,7 @@
         </section>
 
         <section class="mapResults">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/World_Map_1689.JPG/1920px-World_Map_1689.JPG" alt="place holder map" class="map">
+            <div id="map"></div>
         </section>
         <section class="bookResults">
             <ul>
@@ -54,6 +54,9 @@
     </footer>
 
 
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDn4kjOD4MK2ShiRICpTEZ08XvHNGSTL7M&libraries=places&callback=initMap" async defer></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="script.js"></script>
 </body>

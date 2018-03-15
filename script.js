@@ -35,8 +35,64 @@ function getBookData(titleQuery) {
 
 function getMapData(locationQuery, locationType) {
     console.log(locationQuery, locationType);
-    displayMapData("hey");
+    let address = locationQuery.replace(/\s+/g, "+");
+    let results = $.ajax({
+            /* update API end point */
+            url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyDn4kjOD4MK2ShiRICpTEZ08XvHNGSTL7M",
+            dataType: "json",
+            type: "GET"
+        })
+
+        .done(function (results) {
+                //                console.log(results);
+                let geocode = results.results["0"].geometry.location;
+                initMap(geocode, locationType);
+            }
+
+        );
+
+    $(".mapResults").css("display", "block");
 };
+
+var map;
+var infowindow;
+
+function initMap(geocode, locationType) {
+
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: geocode,
+        zoom: 15
+    });
+
+    infowindow = new google.maps.InfoWindow();
+    var service = new google.maps.places.PlacesService(map);
+    service.nearbySearch({
+        location: geocode,
+        radius: 500,
+        type: ['locationType']
+    }, callback);
+}
+
+function callback(results, status) {
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+        for (var i = 0; i < results.length; i++) {
+            createMarker(results[i]);
+        }
+    }
+}
+
+function createMarker(place) {
+    var placeLoc = place.geometry.location;
+    var marker = new google.maps.Marker({
+        map: map,
+        position: place.geometry.location
+    });
+
+    google.maps.event.addListener(marker, 'click', function () {
+        infowindow.setContent(place.name);
+        infowindow.open(map, this);
+    });
+}
 
 function displayBookData(bookData) {
     console.log(bookData);
@@ -52,17 +108,6 @@ function displayBookData(bookData) {
     $(".bookResults").css("display", "block");
 };
 
-function displayMapData(mapData) {
-    console.log(mapData);
-    $(".mapResults").css("display", "block");
-};
-
-function truncate(string) {
-    if (string.length > 300)
-        return string.substring(0, 300) + '...';
-    else
-        return string;
-};
 
 /********************************************
 Step 2 use functions and objects
@@ -92,37 +137,3 @@ $(document).ready(function () {
         getMapData(locationQuery, locationType);
     });
 });
-
-
-
-/*const TASTEDIVE_SEARCH_URL = 'https://tastedive.com/api/similar?';
-
-function getData(searchTerm, callback) {
-  const query = {
-    k: '302151-MyNextBo-ICUKSR70',
-    q: `the help`,
-    type: 'books'
-  };
-  $.getJSON(TASTEDIVE_SEARCH_URL, query, callback);
-}
-
-function onSubmit() {
-    $('.searchForm').submit(event => {
-    event.preventDefault();
-    const query = {
-        k: '302151-MyNextBo-ICUKSR70',
-        q: `the help`,
-        type: 'books'
-    };
-    $.getJSON(TASTEDIVE_SEARCH_URL, query, callback);
-    getData(query, displayData);
-  });
-}
-
-
-function displayData(data) {
-  console.log(data);
-  }
-
-
-$(onSubmit);*/

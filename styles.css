@@ -119,11 +119,11 @@ button {
 }
 
 a:link {
-    color: white;
+    color: #bcd5d1;
 }
 
 a:visited {
-    color: #bcd5d1;
+    color: #D5D1BC;
 }
 
 p {
@@ -197,11 +197,16 @@ li {
 
 .mapResults {
     max-width: 600px;
+    height: 400px;
     text-align: center;
 }
 
 .map {
     width: 600px;
+}
+
+#map {
+    height: 100%;
 }
 
 
@@ -236,11 +241,15 @@ place all the mobile tables styles below this line
 
     .bookResults,
     .mapResults {
-        width: auto;
+        width: inherit;
         display: block;
         text-align: center;
         vertical-align: top;
         margin-top: 20px;
+    }
+
+    .bookTitle {
+        width: auto;
     }
 
 
