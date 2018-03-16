@@ -4,6 +4,7 @@ Step 1 define functions and objects
 const TASTEDIVE_URL = "https://tastedive.com/api/similar?q=the+help";
 const GOOGLEMAPS_URL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670,151.1957&radius=500&types=food&name=cruise&key=YOUR_API_KEY";
 
+
 function getBookData(titleQuery) {
     var params = {
         type: 'books',
@@ -22,7 +23,11 @@ function getBookData(titleQuery) {
         .done(function (result) {
             /* if the results are meeningful, we can just console.log them */
             //console.log(result.Similar.Results);
-            displayBookData(result.Similar.Results);
+            if (result.Similar.Results.length === 0) {
+                alert("Try a different book");
+            } else {
+                displayBookData(result.Similar.Results)
+            };
 
         })
         /* if the call is NOT successful show errors */
@@ -44,14 +49,17 @@ function getMapData(locationQuery, locationType) {
         })
 
         .done(function (results) {
-                //                console.log(results);
-                let geocode = results.results["0"].geometry.location;
-                console.log(geocode);
-                initMap(geocode, locationType);
-            }
-
-        );
-
+            //                console.log(results);
+            console.log(results);
+            let geocode = results.results["0"].geometry.location;
+            console.log(geocode);
+            initMap(geocode, locationType);
+        })
+        .fail(function (jqXHR, error, errorThrown) {
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+        });
     $(".mapResults").css("display", "block");
 };
 
@@ -59,7 +67,12 @@ var map;
 var infowindow;
 
 function initMap(geocode, locationType) {
-
+    if (geocode == undefined) {
+        let geocode = {
+            "lat": "40.7127753",
+            "lng": "-74.0059728"
+        };
+    }
     map = new google.maps.Map(document.getElementById('map'), {
         center: geocode,
         zoom: 14
@@ -80,7 +93,38 @@ function callback(results, status) {
         for (var i = 0; i < results.length; i++) {
             createMarker(results[i]);
         }
+    } else {
+        alert("Try again!");
     }
+}
+
+function placeDetails(place_id) {
+    let results = $.ajax({
+            /* update API end point */
+            url: "https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJN1t_tDeuEmsRUsoyG83frY4&key=AIzaSyDn4kjOD4MK2ShiRICpTEZ08XvHNGSTL7M",
+            //url: "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + place_id + "&key=AIzaSyDn4kjOD4MK2ShiRICpTEZ08XvHNGSTL7M",
+            dataType: "jsonp",
+            cache: false,
+            type: "GET",
+            crossDomain: true,
+            headers: {
+                'Access-Control-Allow-Origin': "*"
+            }
+        })
+
+        .done(function (results) {
+            JSON.stringify(results);
+            console.log(results);
+            //        let geocode = results.results["0"].geometry.location;
+            //        console.log(geocode);
+            //        initMap(geocode, locationType);
+        })
+    //        .fail(function (jqXHR, error, errorThrown) {
+    //            console.log(jqXHR);
+    //            console.log(error);
+    //            console.log(errorThrown);
+    //        })
+    ;
 }
 
 function createMarker(place) {
@@ -93,6 +137,8 @@ function createMarker(place) {
     google.maps.event.addListener(marker, 'click', function () {
         console.log(place.name);
         console.log(place.vicinity);
+        console.log(place.place_id);
+        placeDetails(place.place_id);
         let contentString = `<div id = "infoWindow" role="dialog"> <p>${place.name}</p> <p> ${place.vicinity}</p></div>`;
         infowindow.setContent(contentString);
         infowindow.open(map, this);
