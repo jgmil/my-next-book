@@ -29,7 +29,6 @@ function getBookData(titleQuery) {
 
 //based on the user's search, use the Google Maps API to find the geocode of the address
 function getMapData(locationQuery, locationType) {
-    console.log(locationQuery, locationType);
     let address = locationQuery.replace(/\s+/g, "+");
     let results = $.ajax({
             url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyDn4kjOD4MK2ShiRICpTEZ08XvHNGSTL7M",
@@ -38,10 +37,12 @@ function getMapData(locationQuery, locationType) {
         })
 
         .done(function (results) {
-            console.log(results);
-            let geocode = results.results["0"].geometry.location;
-            console.log(geocode);
-            initMap(geocode, locationType);
+            if (results.results.length === 0) {
+                alert("Try a different location");
+            } else {
+                let geocode = results.results["0"].geometry.location;
+                initMap(geocode, locationType);
+            }
         })
         .fail(function (jqXHR, error, errorThrown) {
             console.log(jqXHR);
@@ -103,7 +104,6 @@ function createMarker(place) {
 //display the results of similar books
 function displayBookData(bookData) {
     for (let i = 0; i < bookData.length; i++) {
-        console.log(bookData[i].Name);
         $(".bookResults ul").append(`
             <li class="bookTitle">
             <a class="moreInfoLink" href="${bookData[i].wUrl}">${bookData[i].Name}</a>
@@ -123,15 +123,17 @@ $(document).ready(function () {
         const titleQuery = $(event.currentTarget).find('.titleQuery').val();
         if (titleQuery == "") {
             alert("Please enter a book title.");
-        };
-        $(event.currentTarget).find('.titleQuery').val("");
-        const locationQuery = $(event.currentTarget).find('.locationQuery').val();
-        if (locationQuery == "") {
-            alert("Please enter a location.");
-        };
-        $(event.currentTarget).find('.locationQuery').val("");
-        const locationType = $("input[type=radio][name=locationType]:checked").val();
-        getBookData(titleQuery);
-        getMapData(locationQuery, locationType);
+        } else {
+            $(event.currentTarget).find('.titleQuery').val("");
+            const locationQuery = $(event.currentTarget).find('.locationQuery').val();
+            if (locationQuery == "") {
+                alert("Please enter a location.");
+            } else {
+                $(event.currentTarget).find('.locationQuery').val("");
+                const locationType = $("input[type=radio][name=locationType]:checked").val();
+                getBookData(titleQuery);
+                getMapData(locationQuery, locationType);
+            }
+        }
     });
 });
