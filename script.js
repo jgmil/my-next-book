@@ -1,10 +1,4 @@
-/********************************************
-Step 1 define functions and objects
-************************************/
-const TASTEDIVE_URL = "https://tastedive.com/api/similar?q=the+help";
-const GOOGLEMAPS_URL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670,151.1957&radius=500&types=food&name=cruise&key=YOUR_API_KEY";
-
-
+//search for similar books using the TasteDive API and the
 function getBookData(titleQuery) {
     var params = {
         type: 'books',
@@ -12,23 +6,18 @@ function getBookData(titleQuery) {
         k: '302151-MyNextBo-ICUKSR70'
     };
     var result = $.ajax({
-            /* update API end point */
             url: "https://tastedive.com/api/similar?q=" + titleQuery,
             data: params,
             dataType: "jsonp",
-            /*set the call type GET / POST*/
             type: "GET"
         })
         /* if the call is successful (status 200 OK) show results */
         .done(function (result) {
-            /* if the results are meeningful, we can just console.log them */
-            //console.log(result.Similar.Results);
             if (result.Similar.Results.length === 0) {
                 alert("Try a different book");
             } else {
                 displayBookData(result.Similar.Results)
             };
-
         })
         /* if the call is NOT successful show errors */
         .fail(function (jqXHR, error, errorThrown) {
@@ -38,18 +27,17 @@ function getBookData(titleQuery) {
         });
 };
 
+//based on the user's search, use the Google Maps API to find the geocode of the address
 function getMapData(locationQuery, locationType) {
     console.log(locationQuery, locationType);
     let address = locationQuery.replace(/\s+/g, "+");
     let results = $.ajax({
-            /* update API end point */
             url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyDn4kjOD4MK2ShiRICpTEZ08XvHNGSTL7M",
             dataType: "json",
             type: "GET"
         })
 
         .done(function (results) {
-            //                console.log(results);
             console.log(results);
             let geocode = results.results["0"].geometry.location;
             console.log(geocode);
@@ -66,6 +54,7 @@ function getMapData(locationQuery, locationType) {
 var map;
 var infowindow;
 
+//use the geocode returned from the previous API call, and the location type the user chose to find nearby libraries or bookstores
 function initMap(geocode, locationType) {
     if (geocode == undefined) {
         let geocode = {
@@ -87,8 +76,8 @@ function initMap(geocode, locationType) {
     }, callback);
 }
 
+//use the results to create markers on the map
 function callback(results, status) {
-    console.log(results);
     if (status === google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < results.length; i++) {
             createMarker(results[i]);
@@ -98,55 +87,21 @@ function callback(results, status) {
     }
 }
 
-function placeDetails(place_id) {
-    let results = $.ajax({
-            /* update API end point */
-            url: "https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJN1t_tDeuEmsRUsoyG83frY4&key=AIzaSyDn4kjOD4MK2ShiRICpTEZ08XvHNGSTL7M",
-            //url: "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + place_id + "&key=AIzaSyDn4kjOD4MK2ShiRICpTEZ08XvHNGSTL7M",
-            dataType: "jsonp",
-            cache: false,
-            type: "GET",
-            crossDomain: true,
-            headers: {
-                'Access-Control-Allow-Origin': "*"
-            }
-        })
-
-        .done(function (results) {
-            JSON.stringify(results);
-            console.log(results);
-            //        let geocode = results.results["0"].geometry.location;
-            //        console.log(geocode);
-            //        initMap(geocode, locationType);
-        })
-    //        .fail(function (jqXHR, error, errorThrown) {
-    //            console.log(jqXHR);
-    //            console.log(error);
-    //            console.log(errorThrown);
-    //        })
-    ;
-}
-
 function createMarker(place) {
     var placeLoc = place.geometry.location;
     var marker = new google.maps.Marker({
         map: map,
         position: place.geometry.location
     });
-
     google.maps.event.addListener(marker, 'click', function () {
-        console.log(place.name);
-        console.log(place.vicinity);
-        console.log(place.place_id);
-        placeDetails(place.place_id);
         let contentString = `<div id = "infoWindow" role="dialog"> <p>${place.name}</p> <p> ${place.vicinity}</p></div>`;
         infowindow.setContent(contentString);
         infowindow.open(map, this);
     });
 }
 
+//display the results of similar books
 function displayBookData(bookData) {
-    console.log(bookData);
     for (let i = 0; i < bookData.length; i++) {
         console.log(bookData[i].Name);
         $(".bookResults ul").append(`
@@ -159,11 +114,7 @@ function displayBookData(bookData) {
     $(".bookResults").css("display", "block");
 };
 
-
-/********************************************
-Step 2 use functions and objects
-************************************/
-
+//on page load, reset the page listen for user input
 $(document).ready(function () {
     $(".mapResults").css("display", "none");
     $(".searchForm").submit(event => {
@@ -180,10 +131,6 @@ $(document).ready(function () {
         };
         $(event.currentTarget).find('.locationQuery').val("");
         const locationType = $("input[type=radio][name=locationType]:checked").val();
-        //        console.log(locationQuery);
-        //        console.log(locationType);
-        //        console.log(titleQuery);
-        //get data next
         getBookData(titleQuery);
         getMapData(locationQuery, locationType);
     });
