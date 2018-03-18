@@ -21,7 +21,7 @@ User Stories
 
 
 ## Working Prototype
-Find a working prototype at https://jgmil.github.io/my-next-book-api-capstone/ .
+Find a working prototype at https://jgmil.github.io/your-new-favorite-book-api-capstone/ .
 
 ## Functionality
 * On the landing page, users are prompted to submit the name of a book, their location and to select either bookstore or library.
