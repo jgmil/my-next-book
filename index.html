@@ -25,10 +25,12 @@
                     <legend>
                         <h2>Find your new favorite book</h2>
                     </legend>
-                    <label>A book you love: <input type="text"  class="titleQuery" placeholder="Title"></label><br>
-                    <label>Your location: <input type="text"  class="locationQuery" placeholder="New York, NY"></label><br>
+                    <label for="bookTitle">A book you love</label><br>
+                    <input type="text" name="bookTitle" id="bookTitle" class="titleQuery" placeholder="Title"><br>
+                    <label for="location">Your location</label><br>
+                    <input type="text" name="location" id="location" class="locationQuery" placeholder="New York, NY"><br>
                     <fieldset role="radiogroup">
-                        <legend class="locationType">Choose a location type:</legend>
+                        <legend class="locationType">Choose a location type</legend>
                         <input type="radio" name="locationType" id="library" checked value="library" aria-labelledby="library">
                         <label for="library"> Library</label>
                         <input type="radio" name="locationType" id="bookstore" value="bookstore" labelledby="bookstore">
