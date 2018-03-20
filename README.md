@@ -1,6 +1,6 @@
 # Your New Favorite Book
 
-New Favorite is a webite that helps users find their next book to read. Users submit the title of a book that they love and their location to get book recommendations and the location and website of nearby bookstores or libraries. The websites uses TasteDive and Google Maps APIs.
+New Favorite is a webite that helps users find their next book to read. Users submit the title of a book that they love and their location to get book recommendations and the location of nearby bookstores or libraries. The website uses TasteDive and Google Maps APIs.
 
 ## Screenshots
 ![Landing page screen shot](https://github.com/jgmil/my-next-book-api-capstone/blob/master/github-images/your-new-favorite-book-landing-page.png)
